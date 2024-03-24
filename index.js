@@ -54,6 +54,8 @@ findOrder();
 
 //git add . : add toàn bộ file trong folder
 
-//git commit "":   
+//git commit "__":   
 
 //git push origin master
+
+//Day la file da sua
