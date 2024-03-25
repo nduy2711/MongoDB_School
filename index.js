@@ -50,19 +50,19 @@ async function findOrder() {
     }
 }
 
-async function deleteOrder(orderIDToDelete) {
+async function deleteOrder(orderID) {
     try {
         await client.connect();
         console.log('Connected to MongoDB successfully !!!');
         
         ordersCollection = client.db(dbName).collection(collectionName);
         
-        const result = await ordersCollection.deleteOne({ orderID: orderIDToDelete });
+        const result = await ordersCollection.deleteOne({ orderID: orderID });
         
         if (result.deletedCount === 1) {
-            console.log('Order with ID', orderIDToDelete, 'deleted successfully');
+            console.log('Order with ID', orderID, 'deleted successfully');
         } else {
-            console.log('Order with ID', orderIDToDelete, 'not found');
+            console.log('Order with ID', orderID, 'not found');
         }
     } catch (err) {
         console.error('Error:', err);
@@ -102,5 +102,4 @@ async function updateOrder(orderIDToUpdate, updatedData) {
 }
 
 
-findOrder();
-
+deleteOrder(OD20240021);
