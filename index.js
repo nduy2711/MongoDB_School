@@ -50,12 +50,57 @@ async function findOrder() {
     }
 }
 
+async function deleteOrder(orderIDToDelete) {
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB successfully !!!');
+        
+        ordersCollection = client.db(dbName).collection(collectionName);
+        
+        const result = await ordersCollection.deleteOne({ orderID: orderIDToDelete });
+        
+        if (result.deletedCount === 1) {
+            console.log('Order with ID', orderIDToDelete, 'deleted successfully');
+        } else {
+            console.log('Order with ID', orderIDToDelete, 'not found');
+        }
+    } catch (err) {
+        console.error('Error:', err);
+    } finally {
+        if (client) {
+            await client.close();
+            console.log('MongoDB connection closed');
+        }
+    }
+}
+
+async function updateOrder(orderIDToUpdate, updatedData) {
+    try {
+        await client.connect();
+        console.log('Connected to MongoDB successfully !!!');
+        
+        ordersCollection = client.db(dbName).collection(collectionName);
+        
+        const result = await ordersCollection.updateOne(
+            { orderID: orderIDToUpdate },
+            { $set: updatedData }
+        );
+        
+        if (result.modifiedCount === 1) {
+            console.log('Order with ID', orderIDToUpdate, 'updated successfully');
+        } else {
+            console.log('Order with ID', orderIDToUpdate, 'not found');
+        }
+    } catch (err) {
+        console.error('Error:', err);
+    } finally {
+        if (client) {
+            await client.close();
+            console.log('MongoDB connection closed');
+        }
+    }
+}
+
+
 findOrder();
 
-//git add . : add toàn bộ file trong folder
-
-//git commit "__":   
-
-//git push origin master
-
-//Day la file da sua
