@@ -4,8 +4,8 @@ const { MongoClient } = require("mongodb");
 const url = "mongodb://localhost:27017";
 
 const client = new MongoClient(url);
-const dbName = 'Orders';
-const collectionName = 'Order';
+const dbName = 'orders';
+const collectionName = 'order';
 
 async function connectToMongoDB()
 {
@@ -21,6 +21,8 @@ async function connectToMongoDB()
         }
     }
 }
+
+connectToMongoDB()
 
 async function findOrder() {
     try {
@@ -50,6 +52,8 @@ async function findOrder() {
     }
 }
 
+findOrder()
+
 async function deleteOrder(orderID) {
     try {
         await client.connect();
@@ -73,6 +77,8 @@ async function deleteOrder(orderID) {
         }
     }
 }
+
+// deleteOrder("OD20240003")
 
 async function updateOrder(orderIDToUpdate, updatedData) {
     try {
@@ -101,5 +107,4 @@ async function updateOrder(orderIDToUpdate, updatedData) {
     }
 }
 
-
-//gen dan, thua sen san, aaaaaaaaaaaaaaaaa
+updateOrder("OD20240004", updateOrder)
