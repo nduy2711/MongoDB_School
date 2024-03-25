@@ -52,8 +52,6 @@ async function findOrder() {
     }
 }
 
-findOrder()
-
 async function deleteOrder(orderID) {
     try {
         await client.connect();
@@ -107,4 +105,5 @@ async function updateOrder(orderIDToUpdate, updatedData) {
     }
 }
 
+findOrder()
 updateOrder("OD20240004", updateOrder)
